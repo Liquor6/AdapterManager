@@ -1,4 +1,4 @@
-package com.liquor.recyclerviewlibrary;
+package com.liquor.adaptermanager;
 
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;

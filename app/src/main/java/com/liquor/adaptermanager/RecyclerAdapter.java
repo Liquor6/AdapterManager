@@ -1,4 +1,4 @@
-package com.liquor.recyclerviewlibrary;
+package com.liquor.adaptermanager;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -11,15 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Liquor on 2018/10/19
- * 同一数据集合下的多种布局适配器
+ * Created by Liquor on 2018/9/13
+ * 同一数据集合下的单个布局适配器
  */
-public class RecyclerMAdapter<T> extends RecyclerView.Adapter<RecyclerViewHolder> {
+public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerViewHolder> {
 
     private Context mContext;//上下文
     private List<T> mData;//数据集合
 
-    public RecyclerMAdapter(Context context, List<T> mData, OnItemViewListener<T> onItemViewListener) {
+    public RecyclerAdapter(Context context, List<T> mData, OnItemViewListener<T> onItemViewListener) {
         this.mContext = context;
         this.mData = mData;
         this.onItemViewListener = onItemViewListener;
@@ -58,11 +58,6 @@ public class RecyclerMAdapter<T> extends RecyclerView.Adapter<RecyclerViewHolder
     }
 
     @Override
-    public int getItemViewType(int position) {
-        return onItemViewListener.itemType(mData.get(position));
-    }
-
-    @Override
     public int getItemCount() {
         return mData == null ? 0 : mData.size();
     }
@@ -70,7 +65,7 @@ public class RecyclerMAdapter<T> extends RecyclerView.Adapter<RecyclerViewHolder
     @NonNull
     @Override
     public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View itemView = LayoutInflater.from(mContext).inflate(onItemViewListener.itemLayout(viewType), viewGroup, false);
+        View itemView = LayoutInflater.from(mContext).inflate(onItemViewListener.itemLayout(), viewGroup, false);
         return RecyclerViewHolder.getViewHolder(itemView);
     }
 
@@ -85,9 +80,7 @@ public class RecyclerMAdapter<T> extends RecyclerView.Adapter<RecyclerViewHolder
 
     public interface OnItemViewListener<T> {
 
-        int itemType(T itemData);
-
-        int itemLayout(int itemType);
+        int itemLayout();
 
         void itemView(RecyclerViewHolder holder, int position, T itemData);
     }

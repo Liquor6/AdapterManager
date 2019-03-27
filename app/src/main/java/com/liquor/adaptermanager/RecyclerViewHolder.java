@@ -1,4 +1,4 @@
-package com.liquor.recyclerviewlibrary;
+package com.liquor.adaptermanager;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;

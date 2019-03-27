@@ -1,4 +1,4 @@
-package com.liquor.recyclerviewlibrary;
+package com.liquor.adaptermanager;
 
 import android.graphics.Rect;
 import android.support.annotation.NonNull;
